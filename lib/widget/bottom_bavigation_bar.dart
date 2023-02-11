@@ -4,6 +4,9 @@
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/screens/home_screen.dart';
+import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
+import 'package:kachrasethui/widget/next_screen.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
   const MyBottomNavigationBar({
@@ -27,25 +30,19 @@ class MyBottomNavigationBar extends StatelessWidget {
         onTap: (int val) {
           switch (val) {
             case 0:
-              // context.pushRoute(HomeScreen());
-
+              nextScreenCloseOthers(context, HomeScreen());
               break;
             case 1:
               // context.pushRoute(ExploreConnectUpScreen());
+              nextScreenCloseOthers(context, SchedulePickUpScreen());
 
               break;
             case 2:
-              break;
-            case 3:
-              // context.pushRoute(UserProfileInfoScreen());
-              break;
-            case 4:
-              // context.pushRoute(UserProfileScreen());
-              // context.pushRoute(UserProfileScreen());
-
+              nextScreenCloseOthers(context, HomeScreen());
               break;
             default:
-            // context.pushRoute(HomeScreen());
+              // context.pushRoute(HomeScreen());
+              nextScreenCloseOthers(context, HomeScreen());
           } //returns tab id which is user tapped
         },
         backgroundColor: Colors.white,

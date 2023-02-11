@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
 import 'package:kachrasethui/screens/home_screen.dart';
 import 'package:kachrasethui/screens/onboarding_screen.dart';
+import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.indigo,
             brightness: Brightness.dark,
           ),
-          home: const HomeScreen()),
+          home: const SchedulePickUpScreen()),
     );
   }
 }

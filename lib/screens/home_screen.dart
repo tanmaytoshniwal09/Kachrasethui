@@ -2,8 +2,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
+import 'package:kachrasethui/widget/next_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,8 +73,13 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         // highlightElevation: 5,
         backgroundColor: Colors.white,
-        onPressed: () {},
-        child: Icon(Icons.add),
+        onPressed: () {
+          nextScreenCloseOthers(context, SchedulePickUpScreen());
+        },
+        child: Icon(
+          Icons.calendar_month_outlined,
+          color: green,
+        ),
       ),
       drawer: MyDrawer(),
       body: Padding(
