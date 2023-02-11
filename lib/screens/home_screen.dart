@@ -1,180 +1,186 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
+import 'package:kachrasethui/widget/drawer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        // shape:Rec ,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            tooltip: 'Notification',
+            onPressed: () {},
           ),
-        ),
+        ],
         elevation: 0,
-        toolbarHeight: mq.height * 0.15,
-        backgroundColor: green,
-
-        leading: Row(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.black,
+              size: 20,
+            )),
+        title: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-                  Text(
-                    'Hello, Harsh',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    'Welcome to Kachraseth',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
+            Spacer(),
+            Icon(
+              Icons.location_city,
+              color: green,
+            ),
+            Text(
+              "Bhopal, India",
+              style: TextStyle(
+                fontSize: 15,
+                color: green,
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.person_2_outlined,
-                    size: 50,
-                  ),
-                ],
-              ),
-            ),
+            Spacer(),
           ],
         ),
-        leadingWidth: mq.width,
-        excludeHeaderSemantics: true,
+        centerTitle: true,
       ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        currentIndex: 0,
+        mediaquery: mq,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        elevation: 1,
+        // highlightElevation: 5,
+        backgroundColor: Colors.white,
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: Column(
           children: [
-            Column(
-              children: [
-                Container  (
-                  width: mq.width * 0.8,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), color: green),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Compost",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Icon(
-                            Icons.delete_forever_outlined,
-                            size: 50,
-                          )),
-                      Text(
-                        "Setup the compost with our experts",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          // fontSize: 20,
-
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+            CarouselSlider(
+              options: CarouselOptions(
+                  height: mq.height * 0.2,
+                  viewportFraction: 0.99,
+                  autoPlay: true),
+              items: [
+                SizedBox(
+                  height: mq.height * 0.2,
+                  width: mq.width,
+                  child: Image.network(
+                    'https://picsum.photos/200',
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Container(
-                  // height: mq.height * 0.25,
-                  width: mq.width * 0.35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), color: green),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Compost",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Icon(
-                            Icons.delete_forever_outlined,
-                            size: 50,
-                          )),
-                      Text(
-                        "Setup the compost with our experts",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          // fontSize: 20,
-
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                SizedBox(
+                  height: mq.height * 0.2,
+                  width: mq.width,
+                  child: Image.network(
+                    'https://picsum.photos/200',
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Container(
-                  // height: mq.height * 0.25,
-                  width: mq.width * 0.35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), color: green),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Compost",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Icon(
-                            Icons.delete_forever_outlined,
-                            size: 50,
-                          )),
-                      Text(
-                        "Setup the compost with our experts",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          // fontSize: 20,
-
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                SizedBox(
+                  height: mq.height * 0.2,
+                  width: mq.width,
+                  child: Image.network(
+                    'https://picsum.photos/200',
+                    fit: BoxFit.cover,
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello, Harsh!',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Welcome to ',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      'Kachraseth',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: green,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Container(
+              height: mq.height * 0.2,
+              width: mq.width,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.grey, width: 1)),
+              child: Row(
+                children: [
+                  Image.asset(
+                    "assets/home_page_request_truck.png",
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "  Request Pick-up",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        width: mq.width * 0.3,
+                        child: Text(
+                          "Request trash pick up and earn money and rewards at your doorstep",
+                          // textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

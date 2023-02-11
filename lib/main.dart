@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
+import 'package:kachrasethui/screens/home_screen.dart';
 import 'package:kachrasethui/screens/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  runApp(const MyApp());
   // User? user = await FirebaseAuth.instance.currentUser;
 }
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<UserProvider>(
           create: (_) => UserProvider(),
-        )
+        ),
       ],
       child: MaterialApp(
           title: 'Kachara Seth',
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.indigo,
             brightness: Brightness.dark,
           ),
-          home: OnboardingScreen()),
+          home: const HomeScreen()),
     );
   }
 }
