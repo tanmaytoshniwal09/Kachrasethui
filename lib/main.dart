@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
+import 'package:kachrasethui/screens/onboarding_screen.dart';
 import 'package:kachrasethui/screens/signInScreen.dart';
 import 'package:kachrasethui/screens/userInfoScreen.dart';
 import 'firebase_options.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.indigo,
             brightness: Brightness.dark,
           ),
-          home: SignInScreen()),
+          home: OnboardingScreen()),
     );
   }
 }
