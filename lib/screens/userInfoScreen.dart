@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/models/signIn.dart';
+import 'package:kachrasethui/provider/userprovider.dart';
 import 'package:kachrasethui/screens/signInScreen.dart';
+import 'package:provider/provider.dart';
+
+import 'addPickupScreen.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
@@ -46,121 +50,39 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.lightBlue,
-        // title: AppBarTitle(),
+        title: Text('Home'),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
-            bottom: 20.0,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(),
-              _user.photoURL != null
-                  ? ClipOval(
-                      child: Material(
-                        color: Colors.grey,
-                        child: Image.network(
-                          _user.photoURL!,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    )
-                  : ClipOval(
-                      child: Material(
-                        color: Colors.blueGrey,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Icon(
-                            Icons.person,
-                            size: 60,
-                            color: Colors.blueGrey,
+      body: FutureBuilder(
+        future: prov.getPickupDetails(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.waiting
+                ? Center(child: CircularProgressIndicator())
+                : prov.pickUpData.length == 0
+                    ? Center(child: Text('No data'))
+                    : ListView.builder(
+                        itemCount: prov.pickUpData.length,
+                        itemBuilder: (context, index) => Card(
+                          child: ListTile(
+                            title: Text(prov.pickUpData[index].createdAt),
+                            subtitle: Text(prov.pickUpData[index].updatedAt),
                           ),
                         ),
                       ),
-                    ),
-              SizedBox(height: 16.0),
-              Text(
-                'Hello',
-                style: TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 26,
-                ),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                _user.displayName!,
-                style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 26,
-                ),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                '( ${_user.email!} )',
-                style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 20,
-                  letterSpacing: 0.5,
-                ),
-              ),
-              SizedBox(height: 24.0),
-              Text(
-                'You are now signed in using your Google account. To sign out of your account, click the "Sign Out" button below.',
-                style: TextStyle(
-                    color: Colors.grey, fontSize: 14, letterSpacing: 0.2),
-              ),
-              SizedBox(height: 16.0),
-              _isSigningOut
-                  ? CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    )
-                  : ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.redAccent,
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        setState(() {
-                          _isSigningOut = true;
-                        });
-                        await Authentication.signOut(context: context);
-                        setState(() {
-                          _isSigningOut = false;
-                        });
-                        Navigator.of(context)
-                            .pushReplacement(_routeToSignInScreen());
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                        child: Text(
-                          'Sign Out',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-            ],
-          ),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // navigate to a new screen called AddPickUpScreen
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return AddPickUpScreen();
+          }));
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
