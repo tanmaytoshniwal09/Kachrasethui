@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
@@ -78,118 +79,120 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: Icon(
           Icons.calendar_month_outlined,
-          color: green,
+          color: Colors.grey,
         ),
       ),
       drawer: MyDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: Column(
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: mq.height * 0.2,
-                  viewportFraction: 0.99,
-                  autoPlay: true),
-              items: [
-                SizedBox(
-                  height: mq.height * 0.2,
-                  width: mq.width,
-                  child: Image.network(
-                    'https://picsum.photos/200',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(
-                  height: mq.height * 0.2,
-                  width: mq.width,
-                  child: Image.network(
-                    'https://picsum.photos/200',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(
-                  height: mq.height * 0.2,
-                  width: mq.width,
-                  child: Image.network(
-                    'https://picsum.photos/200',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Column(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello, Harsh!',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Welcome to ',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w400),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          child: Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                    height: mq.height * 0.2,
+                    viewportFraction: 0.99,
+                    autoPlay: true),
+                items: [
+                  SizedBox(
+                    height: mq.height * 0.2,
+                    width: mq.width,
+                    child: Image.network(
+                      'https://picsum.photos/200',
+                      fit: BoxFit.cover,
                     ),
-                    Text(
-                      'Kachraseth',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: green,
-                          fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    height: mq.height * 0.2,
+                    width: mq.width,
+                    child: Image.network(
+                      'https://picsum.photos/200',
+                      fit: BoxFit.cover,
                     ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: mq.height * 0.2,
-              width: mq.width,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.grey, width: 1)),
-              child: Row(
+                  ),
+                  SizedBox(
+                    height: mq.height * 0.2,
+                    width: mq.width,
+                    child: Image.network(
+                      'https://picsum.photos/200',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    "assets/home_page_request_truck.png",
+                  Text(
+                    'Hello, Harsh!',
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  Row(
                     children: [
                       Text(
-                        "  Request Pick-up",
+                        'Welcome to ',
                         style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        width: mq.width * 0.3,
-                        child: Text(
-                          "Request trash pick up and earn money and rewards at your doorstep",
-                          // textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                             color: Colors.grey,
-                          ),
-                        ),
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        'Kachraseth',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: green,
+                            fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
                 ],
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Container(
+                height: mq.height * 0.2,
+                width: mq.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.grey, width: 1)),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/home_page_request_truck.png",
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "  Request Pick-up",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: mq.width * 0.3,
+                          child: Text(
+                            "Request trash pick up and earn money and rewards at your doorstep",
+                            // textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       //floatingActionButton: FloatingActionButton(onPressed: (){},),
