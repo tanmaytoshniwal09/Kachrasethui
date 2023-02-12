@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/models/sharedpref.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,6 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final user = SharedPref.read('user');
+    print(user);
     final mq = MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
@@ -85,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello, Harsh!',
+                    'Hello, ',
                     style: TextStyle(
                         fontSize: 30,
                         color: Colors.black,
@@ -258,6 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: mq.width * 0.2,
                                 child: Text(
                                   "Setup the home compost model with our professionals",
+                                  overflow: TextOverflow.ellipsis,
                                   // textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,
@@ -276,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // nextScreen(context, SchedulePickUpScreen());
                     },
                     child: Container(
-                      height: mq.height * 0.2,
+                      height: mq.height * 0.3,
                       width: mq.width * 0.4,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -308,6 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: mq.width * 0.2,
                                 child: Text(
                                   "Take pictures of the garbage issue you see on public places and earn rewards",
+                                  // overflow: TextOverflow.clip,
                                   // textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 13,

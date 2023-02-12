@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 class UserProvider with ChangeNotifier {
   List<PickupModel> _pickUpData = [];
   List<PickupModel> get pickUpData => _pickUpData;
+  UserModel userdata = UserModel();
   //function to post data on an api
   static Future<void> postData(user) async {
     http.Response req = await http
@@ -29,6 +30,7 @@ class UserProvider with ChangeNotifier {
     UserModel userSignedIn = UserModel.fromJson(jsonDecode(req.body));
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('token', userSignedIn.token);
+    prefs.setString('user', jsonEncode(userSignedIn));
     // notifyListeners();
     print(userSignedIn.user.name + ' ' + userSignedIn.token);
   }

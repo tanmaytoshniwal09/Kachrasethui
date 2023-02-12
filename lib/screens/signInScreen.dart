@@ -39,16 +39,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'FlutterFire',
+                      'Kachra Seth',
                       style: TextStyle(
-                        color: Colors.yellow,
-                        fontSize: 40,
-                      ),
-                    ),
-                    const Text(
-                      'Authentication',
-                      style: TextStyle(
-                        color: Colors.orange,
+                        color: Colors.brown,
                         fontSize: 40,
                       ),
                     ),

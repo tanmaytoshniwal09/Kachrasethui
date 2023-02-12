@@ -150,7 +150,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 right: 5,
                 child: FloatingActionButton(
                   onPressed: () {
-                    nextScreen(context, HomeScreen());
+                    nextScreen(context, SignInScreen());
                   },
                   backgroundColor: Colors.green,
                   child: Icon(

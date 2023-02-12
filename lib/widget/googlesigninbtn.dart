@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/models/signIn.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
-import 'package:kachrasethui/screens/userInfoScreen.dart';
+import 'package:kachrasethui/screens/home_screen.dart';
+import 'package:kachrasethui/widget/next_screen.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -42,13 +43,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 });
 
                 if (user != null) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => UserInfoScreen(
-                        user: user,
-                      ),
-                    ),
-                  );
+                  nextScreenCloseOthers(context, HomeScreen());
                 }
               },
               child: Padding(
@@ -58,7 +53,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("assets/google_logo.png"),
+                      image: AssetImage("assets/google-logo.jpg"),
                       height: 35.0,
                     ),
                     Padding(
@@ -67,7 +62,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                         'Sign in with Google',
                         style: TextStyle(
                           fontSize: 20,
-                          color: Colors.black54,
+                          color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
