@@ -22,20 +22,9 @@ class CompostScreen extends StatefulWidget {
 }
 
 class _CompostScreenState extends State<CompostScreen> {
-  int _selectedDate = 0;
-  int _selectedWaste = 0;
-  bool isRepeatWeekly = false;
-  bool isRepeatMonthly = false;
-  bool zeroToTen = false;
-  bool TentoTwenty = false;
-  bool moreThanTwenty = false;
-  List<String> garbageType = [
-    "Waste",
-    "Plastic",
-    "Glass",
-    "Paper",
-    "Metal",
-  ];
+  bool med = false;
+  bool small = false;
+  bool large = false;
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<UserProvider>(context, listen: false);
@@ -129,10 +118,10 @@ class _CompostScreenState extends State<CompostScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: small,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          small = value!;
                         });
                       },
                     ),
@@ -146,10 +135,10 @@ class _CompostScreenState extends State<CompostScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatMonthly,
+                      value: med,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatMonthly = value!;
+                          med = value!;
                         });
                       },
                     ),
@@ -163,10 +152,10 @@ class _CompostScreenState extends State<CompostScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: large,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          large = value!;
                         });
                       },
                     ),
@@ -197,7 +186,9 @@ class _CompostScreenState extends State<CompostScreen> {
                         selectionMode: DateRangePickerSelectionMode.single,
                       ),
                       Text('Add your mobile number:'),
-                      TextFormField()
+                      TextFormField(
+                        keyboardType: TextInputType.phone,
+                      )
                     ],
                   ),
                 ),
@@ -207,9 +198,9 @@ class _CompostScreenState extends State<CompostScreen> {
                     Map address = {
                       "address":
                           "Link Road Number 3, Near Kali Mata Mandir, Bhopal, 217881",
-                      "pickup_date":
-                          DateTime.now().add(Duration(days: _selectedDate)),
-                      "category": garbageType[_selectedWaste]
+                      // "pickup_date":
+                      //     DateTime.now().add(Duration(days: _selectedDate)),
+                      // "category": garbageType[_selectedWaste]
                     };
 
                     nextScreen(context, CongratsScreen());

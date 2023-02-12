@@ -6,6 +6,7 @@ import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/screens/confirm_pickup_screen.dart';
 import 'package:kachrasethui/screens/congrats_screen.dart';
 import 'package:kachrasethui/screens/home_screen.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
@@ -215,7 +216,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
             // pickup date and time container
             InkWell(
               onTap: () {
-                nextScreenCloseOthers(context, CongratsScreen());
+                nextScreen(context, ConfirmPickUpScreen());
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0),

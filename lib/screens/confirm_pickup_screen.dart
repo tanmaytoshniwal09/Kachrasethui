@@ -2,6 +2,7 @@
 import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
+import 'package:kachrasethui/screens/congrats_screen.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
 
 class ConfirmPickUpScreen extends StatefulWidget {
@@ -133,70 +134,58 @@ class _ConfirmPickUpScreenState extends State<ConfirmPickUpScreen> {
               ),
             ),
             SizedBox(height: 10),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 200,
-                  width: mq.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey, width: 1)),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        'Upload Image',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: mq.width * 0.9,
-                        child: const Text(
-                          'Here, upload the pictures of spoiled waste/garbage in your locality or public places to clean city and earn rewards',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Icon(
-                        Icons.upload,
-                        color: Colors.black,
-                        size: 60,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        'Choose files here(max upload 50MB)',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    "YOUR PICKUP ADDRESS",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
                   ),
+                  Spacer(),
+                  TextButton(onPressed: () {}, child: Text("Edit Address"))
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 60,
+                width: mq.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey, width: 1)),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: const Icon(
+                        Icons.location_on,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(
+                      width: mq.width * 0.7,
+                      child: Text(
+                        "Link Road Number 3, Near Kali Mata Mandir, Bhopal, 217881",
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // pickup date and time container
+// pickup date and time container
             InkWell(
               onTap: () {
-                nextScreen(context, ConfirmPickUpScreen());
+                nextScreen(context, CongratsScreen());
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
