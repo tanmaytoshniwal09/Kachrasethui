@@ -231,26 +231,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.grey, width: 1)),
-                      child: Row(
+                      child: Column(
                         children: [
-                          // Image.asset(
-                          //   "assets/home_page_request_truck.png",
-                          // ),
-                          Column(
+                          SizedBox(height: 20),
+                          Text(
+                            "Compost & Earn",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: green,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                "  Request Pick-up",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset(
+                                  "assets/fertilizer.png",
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                               SizedBox(
-                                width: mq.width * 0.3,
+                                width: mq.width * 0.2,
                                 child: Text(
-                                  "Request trash pick up and earn money and rewards at your doorstep",
+                                  "Setup the home compost model with our professionals",
                                   // textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,
@@ -276,32 +283,34 @@ class _HomeScreenState extends State<HomeScreen> {
                           border: Border.all(color: Colors.grey, width: 1)),
                       child: Column(
                         children: [
+                          SizedBox(height: 20),
                           Text(
-                            "Composting",
+                            "Complain & Earn",
                             style: TextStyle(
                               fontSize: 20,
                               color: green,
                             ),
                           ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               SizedBox(
-                                height: 100,
-                                width: 80,
+                                height: 50,
+                                width: 50,
                                 child: Image.asset(
-                                  "assets/home_page_request_truck.png",
+                                  "assets/trash_can.png",
                                   fit: BoxFit.contain,
                                 ),
                               ),
                               SizedBox(
-                                width: mq.width * 0.15,
+                                width: mq.width * 0.2,
                                 child: Text(
                                   "Take pictures of the garbage issue you see on public places and earn rewards",
                                   // textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 13,
                                     color: Colors.grey,
                                   ),
                                 ),
