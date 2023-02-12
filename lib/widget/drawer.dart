@@ -10,7 +10,7 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawer2State extends State<MyDrawer> {
   // bool _isupdate = true;
-  String userName = "";
+  String userName = "ankurg132";
 
   Uint8List? image;
 
@@ -89,9 +89,11 @@ class _MyDrawer2State extends State<MyDrawer> {
                 child: const ListTile(
                   leading: Icon(
                     Icons.people,
+                    color: Colors.black,
                   ),
                   title: Text(
                     'Refer a Friend',
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
@@ -100,9 +102,11 @@ class _MyDrawer2State extends State<MyDrawer> {
                 child: const ListTile(
                     leading: Icon(
                       Icons.loop,
+                      color: Colors.black,
                     ),
                     title: const Text(
                       'Updates',
+                      style: TextStyle(color: Colors.black),
                     ),
                     trailing: Icon(
                       Icons.arrow_circle_down_outlined,

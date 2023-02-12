@@ -21,6 +21,10 @@ class MyBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('To be added later.'),
+      duration: Duration(seconds: 5),
+    );
     return Container(
       width: mediaquery.width,
       decoration: BoxDecoration(
@@ -43,7 +47,10 @@ class MyBottomNavigationBar extends StatelessWidget {
 
               break;
             case 2:
-              currentIndex == 2 ? null : nextScreen(context, PickUpScreen());
+              currentIndex == 2
+                  ? null
+                  : ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ;
               break;
             default:
               // context.pushRoute(HomeScreen());
