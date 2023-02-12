@@ -5,8 +5,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/Constants/constants.dart';
+import 'package:kachrasethui/screens/pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
+import 'package:kachrasethui/widget/next_screen.dart';
 
 class SchedulePickUpScreen extends StatefulWidget {
   const SchedulePickUpScreen({super.key});
@@ -349,16 +351,21 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                      height: 40,
-                      width: mq.width * 0.9,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5), color: green
-                          // border: Border.all(color: green, width: 1)
-                          ),
-                      child: Center(child: Text("Raise Pickup Request"))),
+                InkWell(
+                  onTap: () {
+                    nextScreen(context, PickUpScreen());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                        height: 40,
+                        width: mq.width * 0.9,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5), color: green
+                            // border: Border.all(color: green, width: 1)
+                            ),
+                        child: Center(child: Text("Raise Pickup Request"))),
+                  ),
                 ),
                 SizedBox(
                   height: 100,

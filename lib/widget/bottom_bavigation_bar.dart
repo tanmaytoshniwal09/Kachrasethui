@@ -5,6 +5,7 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/screens/home_screen.dart';
+import 'package:kachrasethui/screens/pickup_screen.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
 
@@ -30,15 +31,19 @@ class MyBottomNavigationBar extends StatelessWidget {
         onTap: (int val) {
           switch (val) {
             case 0:
-              nextScreenCloseOthers(context, HomeScreen());
+              currentIndex == 0
+                  ? null
+                  : nextScreenCloseOthers(context, HomeScreen());
               break;
             case 1:
               // context.pushRoute(ExploreConnectUpScreen());
-              nextScreenCloseOthers(context, SchedulePickUpScreen());
+              currentIndex == 1
+                  ? null
+                  : nextScreenCloseOthers(context, SchedulePickUpScreen());
 
               break;
             case 2:
-              nextScreenCloseOthers(context, HomeScreen());
+              currentIndex == 2 ? null : nextScreen(context, PickUpScreen());
               break;
             default:
               // context.pushRoute(HomeScreen());
