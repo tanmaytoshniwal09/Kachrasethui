@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/models/sharedpref.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
+import 'package:kachrasethui/screens/complain_screen.dart';
+import 'package:kachrasethui/screens/compost_screen.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,24 +108,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: mq.height * 0.2,
                     width: mq.width,
-                    child: Image.network(
-                      'https://picsum.photos/200',
+                    child: Image.asset(
+                      'assets/cover1.png',
                       fit: BoxFit.cover,
                     ),
                   ),
                   SizedBox(
                     height: mq.height * 0.2,
                     width: mq.width,
-                    child: Image.network(
-                      'https://picsum.photos/200',
+                    child: Image.asset(
+                      'assets/cover1.png',
                       fit: BoxFit.cover,
                     ),
                   ),
                   SizedBox(
                     height: mq.height * 0.2,
                     width: mq.width,
-                    child: Image.network(
-                      'https://picsum.photos/200',
+                    child: Image.asset(
+                      'assets/cover1.png',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -230,11 +232,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      // nextScreen(context, SchedulePickUpScreen());
+                      nextScreen(context, CompostScreen());
                     },
                     child: Container(
                       // height: mq.height * 0.3,
-                      width: mq.width * 0.45,
+                      width: mq.width * 0.46,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.grey, width: 1)),
@@ -245,13 +247,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Compost & Earn",
                             style: TextStyle(
                               fontSize: 20,
-                              color: green,
                             ),
                           ),
                           SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 50,
@@ -281,11 +282,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      // nextScreen(context, SchedulePickUpScreen());
+                      nextScreen(context, ComplainScreen());
                     },
                     child: Container(
                       // height: mq.height * 0.3,
-                      width: mq.width * 0.45,
+                      width: mq.width * 0.46,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.grey, width: 1)),
@@ -296,13 +297,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Complain & Earn",
                             style: TextStyle(
                               fontSize: 20,
-                              color: green,
                             ),
                           ),
                           SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 50,

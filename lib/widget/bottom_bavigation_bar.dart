@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/screens/home_screen.dart';
 import 'package:kachrasethui/screens/pickup_screen.dart';
+import 'package:kachrasethui/screens/show_pickups_screen.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
 
@@ -49,7 +50,7 @@ class MyBottomNavigationBar extends StatelessWidget {
             case 2:
               currentIndex == 2
                   ? null
-                  : ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  : nextScreenCloseOthers(context, PickupsScreen());
               ;
               break;
             default:

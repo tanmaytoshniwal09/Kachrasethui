@@ -47,6 +47,7 @@ dependencies:
   floating_bottom_navigation_bar: ^1.5.2
   another_stepper: ^1.2.0
   image_picker: ^0.8.6+1
+  syncfusion_flutter_datepicker: ^20.4.49
 
 dev_dependencies:
   flutter_test:

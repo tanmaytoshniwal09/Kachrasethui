@@ -37,8 +37,7 @@ class MyApp extends StatelessWidget {
           title: 'Kachara Seth',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.indigo,
-            brightness: Brightness.dark,
+            primarySwatch: Colors.green,
           ),
           home: data != '' ? HomeScreen() : OnboardingScreen()),
     );
