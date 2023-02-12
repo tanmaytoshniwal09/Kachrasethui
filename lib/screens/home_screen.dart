@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/models/sharedpref.dart';
+import 'package:kachrasethui/provider/userprovider.dart';
 import 'package:kachrasethui/screens/schedule_pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final user = SharedPref.read('user');
-    print(user);
+    final prov = Provider.of<UserProvider>(context, listen: false);
     final mq = MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
@@ -232,8 +233,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       // nextScreen(context, SchedulePickUpScreen());
                     },
                     child: Container(
-                      height: mq.height * 0.2,
-                      width: mq.width * 0.4,
+                      // height: mq.height * 0.3,
+                      width: mq.width * 0.45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.grey, width: 1)),
@@ -261,10 +262,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                width: mq.width * 0.2,
+                                width: mq.width * 0.25,
                                 child: Text(
                                   "Setup the home compost model with our professionals",
-                                  overflow: TextOverflow.ellipsis,
+                                  overflow: TextOverflow.clip,
                                   // textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 15,
@@ -283,8 +284,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       // nextScreen(context, SchedulePickUpScreen());
                     },
                     child: Container(
-                      height: mq.height * 0.3,
-                      width: mq.width * 0.4,
+                      // height: mq.height * 0.3,
+                      width: mq.width * 0.45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.grey, width: 1)),

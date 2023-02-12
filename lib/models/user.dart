@@ -1,5 +1,5 @@
 class UserModel {
-  late User user;
+  late User? user;
   late String token;
 
   UserModel({user, token});
@@ -12,7 +12,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.user != null) {
-      data['user'] = this.user.toJson();
+      data['user'] = this.user?.toJson();
     }
     data['token'] = this.token;
     return data;

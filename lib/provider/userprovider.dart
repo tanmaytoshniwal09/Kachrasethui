@@ -12,7 +12,7 @@ class UserProvider with ChangeNotifier {
   List<PickupModel> get pickUpData => _pickUpData;
   UserModel userdata = UserModel();
   //function to post data on an api
-  static Future<void> postData(user) async {
+  Future<void> postData(user) async {
     http.Response req = await http
         .post(
       Uri.parse('https://kachraseth.semikolan.co/register'),
@@ -30,9 +30,9 @@ class UserProvider with ChangeNotifier {
     UserModel userSignedIn = UserModel.fromJson(jsonDecode(req.body));
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('token', userSignedIn.token);
-    prefs.setString('user', jsonEncode(userSignedIn));
+    userdata = userSignedIn;
     // notifyListeners();
-    print(userSignedIn.user.name + ' ' + userSignedIn.token);
+    print(userSignedIn.user?.name ?? '' + ' ' + userSignedIn.token);
   }
 
   //function to post pickup details from api

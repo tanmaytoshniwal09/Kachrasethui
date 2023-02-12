@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'dart:io';
+
 import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
 
@@ -12,6 +16,17 @@ class PickUpScreen extends StatefulWidget {
 }
 
 class _PickUpScreenState extends State<PickUpScreen> {
+  File? galleryFile;
+  imageSelectorGallery() async {
+    final XFile? file = await ImagePicker.platform.getImage(
+      source: ImageSource.gallery,
+      // maxHeight: 50.0,
+      // maxWidth: 50.0,
+    );
+    galleryFile = File(file!.path);
+    setState(() {});
+  }
+
   List<StepperData> stepperData = [
     StepperData(
         title: StepperText(
@@ -134,11 +149,13 @@ class _PickUpScreenState extends State<PickUpScreen> {
           SizedBox(height: 10),
 
           InkWell(
-            onTap: () {},
+            onTap: () {
+              imageSelectorGallery();
+            },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 200,
+                // height: 500,
                 width: mq.width,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -181,12 +198,11 @@ class _PickUpScreenState extends State<PickUpScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      'Choose files here(max upload 50MB)',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                      ),
+                    galleryFile == null
+                        ? Container()
+                        : Image.file(galleryFile!),
+                    const SizedBox(
+                      height: 10,
                     ),
                   ],
                 ),

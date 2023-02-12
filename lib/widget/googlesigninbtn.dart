@@ -4,6 +4,7 @@ import 'package:kachrasethui/models/signIn.dart';
 import 'package:kachrasethui/provider/userprovider.dart';
 import 'package:kachrasethui/screens/home_screen.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
+import 'package:provider/provider.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<UserProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: _isSigningIn
@@ -37,7 +39,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
                 User? user =
                     await Authentication.signInWithGoogle(context: context);
-                await UserProvider.postData(user!);
+                await prov.postData(user!);
                 setState(() {
                   _isSigningIn = false;
                 });

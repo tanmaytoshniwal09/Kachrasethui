@@ -5,10 +5,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kachrasethui/Constants/colors.dart';
 import 'package:kachrasethui/Constants/constants.dart';
+import 'package:kachrasethui/provider/userprovider.dart';
 import 'package:kachrasethui/screens/pickup_screen.dart';
 import 'package:kachrasethui/widget/bottom_bavigation_bar.dart';
 import 'package:kachrasethui/widget/drawer.dart';
 import 'package:kachrasethui/widget/next_screen.dart';
+import 'package:provider/provider.dart';
 
 class SchedulePickUpScreen extends StatefulWidget {
   const SchedulePickUpScreen({super.key});
@@ -18,7 +20,13 @@ class SchedulePickUpScreen extends StatefulWidget {
 }
 
 class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
+  int _selectedDate = 0;
+  int _selectedWaste = 0;
   bool isRepeatWeekly = false;
+  bool isRepeatMonthly = false;
+  bool zeroToTen = false;
+  bool TentoTwenty = false;
+  bool moreThanTwenty = false;
   List<String> garbageType = [
     "Waste",
     "Plastic",
@@ -28,6 +36,7 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<UserProvider>(context, listen: false);
     final mq = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -102,39 +111,48 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                           child: ListView.builder(
                             itemCount: 6,
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (ctx, index) => Card(
-                              elevation: 5,
-                              child: Container(
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 20),
-                                    Text(
-                                      intToWeekDay[
-                                              (DateTime.now().weekday + index) %
-                                                      7 +
-                                                  1]!
-                                          .substring(0, 3),
-                                      style: TextStyle(
-                                        color:
-                                            index == 0 ? green : Colors.black,
+                            itemBuilder: (ctx, index) => InkWell(
+                              onTap: () => setState(() {
+                                _selectedDate = index;
+                                print("SELECTED IS NOW: " +
+                                    _selectedDate.toString());
+                              }),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 20),
+                                      Text(
+                                        intToWeekDay[(DateTime.now().weekday +
+                                                        index) %
+                                                    7 +
+                                                1]!
+                                            .substring(0, 3),
+                                        style: TextStyle(
+                                          color: _selectedDate == index
+                                              ? green
+                                              : Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      (((DateTime.now().day + index)) % 30)
-                                          .toString(),
-                                      style: TextStyle(
-                                        // fontSize: 20,
-                                        color:
-                                            index == 0 ? green : Colors.black,
+                                      Text(
+                                        (((DateTime.now().day + index)) % 30)
+                                            .toString(),
+                                        style: TextStyle(
+                                          // fontSize: 20,
+                                          color: _selectedDate == index
+                                              ? green
+                                              : Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 20),
-                                  ],
+                                      SizedBox(height: 20),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -172,10 +190,10 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: isRepeatMonthly,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          isRepeatMonthly = value!;
                         });
                       },
                     ),
@@ -205,26 +223,35 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                   child: ListView.builder(
                     itemCount: garbageType.length,
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (ctx, index) => Card(
-                      elevation: 5,
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20),
-                            Text(
-                              garbageType[index],
-                              style: TextStyle(
-                                // fontSize: 20,
-                                color: index == 0 ? green : Colors.black,
+                    itemBuilder: (ctx, index) => InkWell(
+                      onTap: () => {
+                        setState(() {
+                          _selectedWaste = index;
+                        })
+                      },
+                      child: Card(
+                        elevation: 5,
+                        child: Container(
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 20),
+                              Text(
+                                garbageType[index],
+                                style: TextStyle(
+                                  // fontSize: 20,
+                                  color: index == _selectedWaste
+                                      ? green
+                                      : Colors.black,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 20),
-                          ],
+                              SizedBox(height: 20),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -249,10 +276,10 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: zeroToTen,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          zeroToTen = value!;
                         });
                       },
                     ),
@@ -267,10 +294,10 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: TentoTwenty,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          TentoTwenty = value!;
                         });
                       },
                     ),
@@ -286,10 +313,10 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.all(green),
-                      value: isRepeatWeekly,
+                      value: moreThanTwenty,
                       onChanged: (value) {
                         setState(() {
-                          isRepeatWeekly = value!;
+                          moreThanTwenty = value!;
                         });
                       },
                     ),
@@ -353,6 +380,14 @@ class _SchedulePickUpScreenState extends State<SchedulePickUpScreen> {
                 ),
                 InkWell(
                   onTap: () {
+                    Map address = {
+                      "address":
+                          "Link Road Number 3, Near Kali Mata Mandir, Bhopal, 217881",
+                      "pickup_date":
+                          DateTime.now().add(Duration(days: _selectedDate)),
+                      "category": garbageType[_selectedWaste]
+                    };
+
                     nextScreen(context, PickUpScreen());
                   },
                   child: Padding(
